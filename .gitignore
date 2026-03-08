@@ -1,0 +1,44 @@
+minikube-linux-amd64
+
+# Metaflow local datastore
+.metaflow/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code local settings
+.claude/
+
+# Secrets / config overrides
+.env
+*.env.local
+metaflow_config.json
+
+# Binaries dropped in project root (e.g. minikube)
+minikube-*

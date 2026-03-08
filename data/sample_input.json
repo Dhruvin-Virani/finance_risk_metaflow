@@ -1,0 +1,28 @@
+{
+  "salary": 1200000,
+  "expenses": 720000,
+  "investments": {
+    "equity": 300000,
+    "bonds": 100000,
+    "gold": 80000,
+    "cash": 60000
+  },
+  "age": 32,
+  "goals": [
+    {
+      "name": "Home purchase",
+      "target_amount": 3000000,
+      "years_to_achieve": 7
+    },
+    {
+      "name": "Child education",
+      "target_amount": 1500000,
+      "years_to_achieve": 15
+    },
+    {
+      "name": "Retirement corpus",
+      "target_amount": 20000000,
+      "years_to_achieve": 28
+    }
+  ]
+}
