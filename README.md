@@ -4,6 +4,9 @@ A Metaflow pipeline that takes your raw financial inputs — salary, expenses,
 investments, age, and goals — and produces a risk-scored portfolio recommendation
 backed by a Monte Carlo simulation.
 
+<img width="1902" height="1055" alt="image" src="https://github.com/user-attachments/assets/642f3845-7802-4deb-b382-473eaae513ef" />
+
+
 ---
 
 ## Pipeline Overview
