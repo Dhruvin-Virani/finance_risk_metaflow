@@ -67,6 +67,8 @@ All amounts are in the same currency unit (INR in samples, but the math is curre
 
 ## Quick Start
 
+### Option A — CLI only (no Docker needed)
+
 ```bash
 pip install -r requirements.txt
 
@@ -81,11 +83,55 @@ python3 flow.py run \
   --investments '{"equity":400000,"bonds":100000,"gold":50000,"cash":80000}' \
   --goals '[{"name":"Retirement","target_amount":25000000,"years_to_achieve":25}]'
 
-# View per-step cards in browser
+# View per-step HTML cards in browser
 python3 flow.py card view extract_features
 python3 flow.py card view score_risk
 python3 flow.py card view simulate_investments
 python3 flow.py card view recommend_portfolio
+```
+
+### Option B — With Metaflow UI (Docker required)
+
+The UI shows a full DAG, run history, step timings, and artifacts at `http://localhost:8083`.
+
+**1. Build the metadata service image** (once, takes ~3 min):
+```bash
+# Install docker buildx if not already present
+mkdir -p ~/.docker/cli-plugins
+curl -SL https://github.com/docker/buildx/releases/download/v0.13.1/buildx-v0.13.1.linux-amd64 \
+  -o ~/.docker/cli-plugins/docker-buildx
+chmod +x ~/.docker/cli-plugins/docker-buildx
+
+# Clone and build
+git clone --depth=1 https://github.com/Netflix/metaflow-service /tmp/metaflow-service
+DOCKER_BUILDKIT=1 docker build \
+  --build-arg TARGETARCH=amd64 \
+  -t metadata_service:latest \
+  /tmp/metaflow-service
+```
+
+**2. Start the stack:**
+```bash
+docker-compose up -d
+```
+
+**3. Run the flow pointing at the local metadata service:**
+```bash
+METAFLOW_DEFAULT_METADATA=service \
+METAFLOW_SERVICE_URL=http://localhost:8080/ \
+python3 flow.py run
+```
+
+**4. Open the UI:**
+```
+http://localhost:8083
+```
+
+Every subsequent run (with those env vars) appears in the UI automatically.
+
+To stop the stack:
+```bash
+docker-compose down
 ```
 
 ---
